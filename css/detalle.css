@@ -1,0 +1,111 @@
+/* ====== HEADER ====== */
+header {
+    width: 100%;
+    background: #4a90e2;
+    color: white;
+    padding: 15px 25px;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+/* Para que el body no aplaste el header */
+body {
+    display: block;
+    padding: 20px;
+    background: #f3f4f7;
+    font-family: Arial, sans-serif;
+}
+
+
+/* Contenedor principal */
+.container {
+    display: flex;
+    gap: 20px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* ====== TARJETAS / CAJAS ====== */
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 14px; /* <-- suaviza las esquinas */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* ====== SECCIÓN IZQUIERDA ====== */
+.left-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.pokemon-info {
+    text-align: center;
+}
+
+.pokemon-info button {
+    padding: 10px 15px;
+    border: none;
+    background: #4a90e2;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.pokemon-info button:hover {
+    background: #357ac9;
+}
+
+/* Stats */
+.stats {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.stat-item {
+    background: #eef2f7;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* ====== SECCIÓN DERECHA ====== */
+.right-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.moves-section h3 {
+    margin-top: 0;
+}
+
+.move-box {
+    background: #eef2f7;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* Inputs o selects de movimientos */
+.move-input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    background: white;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+    }
+}
