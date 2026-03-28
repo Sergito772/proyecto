@@ -64,7 +64,7 @@
                 <p>Cargando Pokémon...</p>
             </div>
             <section v-else id="pokemonCards" class="cards">
-                <a v-for="poke in pokemonCards" :key="poke.id" :href="'detallePokemon.php?id=' + poke.id" class="card-link">
+                <a v-for="poke in pokemonCards" :key="poke.id" :href="'detallePokemon.php?numero_pokedex=' + poke.numero_pokedex" class="card-link">
                     <article class="card">
                         <img :src="poke.sprite" class="imgpokemon">
 

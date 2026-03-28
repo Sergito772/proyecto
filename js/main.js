@@ -172,11 +172,11 @@ var appLista = new Vue({
                         }
                     }else{
                         if(!formasEspeciales[p.nombre])
-                            info = await fetch(`https://pokeapi.co/api/v2/pokemon/${p.numero_pokedex}`).then(r => r.json());
+                            info = await fetch(`https://pokeapi.co/api/v2/pokemon/${p.numero_pokedex}`).then(r => r.json())
                         else
                             info = await fetch(`https://pokeapi.co/api/v2/pokemon/${formasEspeciales[p.nombre]}`).then(r => r.json());
                         
-                        species = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${p.numero_pokedex}`).then(r => r.json());
+                        species = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${p.numero_pokedex}`).then(r => r.json())
                     }
 
                     const descripcion = species.flavor_text_entries.find(e => e.language.name === "es")?.flavor_text || "";
@@ -187,7 +187,8 @@ var appLista = new Vue({
                         tipo1: tipos[0],
                         tipo2: tipos[1],
                         sprite: info.sprites.front_default,
-                        descripcion: descripcion
+                        descripcion: descripcion,
+                        numero_pokedex: p.numero_pokedex
                     };
                 })
 
