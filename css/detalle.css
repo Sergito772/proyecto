@@ -46,6 +46,13 @@ a.disabled {
 .imagenEnlace {
     width: 30px;
     height: 30px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.imagenDetalle {
+    width: 250px;
+    height: 250px;
 }
 
 .card.pokemon-info {
@@ -72,6 +79,20 @@ a.disabled {
     text-align: left;
 }
 
+.variantePoke{
+    display: flex;
+    color: white;
+    width: 94%;
+    padding: 10px;
+    background: rgba(39, 42, 46) !important;
+    border: 1px solid rgba(72, 74, 87) !important;
+    border-radius: 15px;
+    text-decoration: none;
+    font-size: 20px;
+    align-items: center;
+    margin-left: 3%;
+}
+
 .card-prev-next {
     display: flex;
     color: white;
@@ -79,6 +100,13 @@ a.disabled {
     padding: 10px;
     border: 1px solid rgba(72, 74, 87);
     border-radius: 15px;
+    text-decoration: none;
+    font-size: 20px;
+    align-items: center;
+}
+
+.card-prev-next:hover{
+    text-decoration: underline;
 }
 
 .poke-select{

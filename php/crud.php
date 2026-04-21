@@ -103,7 +103,7 @@ switch($opcion){
         break;
 
     case 6:
-        $sql = "SELECT p.* FROM pokemon p WHERE p.numero_pokedex = :numero_pokedex";
+        $sql = "SELECT p.* FROM pokemon p WHERE p.numero_pokedex = :numero_pokedex LIMIT 1";
 
         $params ["numero_pokedex"] = $numero_pokedex;
 

@@ -15,13 +15,13 @@
             </section>
         </header>
         <main id="appDetalle">
-            <h1>{{ poke[0]?.nombre }}</h1> 
-            <p>Ataque: {{ poke[0]?.Ataque }}</p> 
-            <p>Defensa: {{ poke[0]?.defensa }}</p> 
-            <p>PV: {{ poke[0]?.PV }}</p> 
-            <p>Generación: {{ poke[0]?.nombre_generacion }}</p>
-            <p>Tipos: {{ poke[0]?.tipos }}</p>
-            <p>Movimientos: {{ poke[0]?.movimientos }}</p>
+            <h1>{{ varianteSeleccionada?.nombre }}</h1> 
+            <p>Ataque: {{ varianteSeleccionada?.Ataque }}</p> 
+            <p>Defensa: {{ varianteSeleccionada?.defensa }}</p> 
+            <p>PV: {{ varianteSeleccionada?.PV }}</p> 
+            <p>Generación: {{ varianteSeleccionada?.nombre_generacion }}</p>
+            <p>Tipos: {{ varianteSeleccionada?.tipos }}</p>
+            <p>Movimientos: {{ varianteSeleccionada?.movimientos }}</p>
 
             <div class="container"> 
                 <div class="left-panel"> 
@@ -32,12 +32,30 @@
                         </h1>
                         <div class="poke-select">
                             <a :class="{ disabled: poke[0]?.id <= 1 }" :href="'detallePokemon.php?numero_pokedex=' + (poke[0]?.numero_pokedex - 1) " class="card-prev-next">
-                                <img class="imagenEnlace anterior" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png">
+                                <i class="fa-solid fa-angle-left"></i>
                                 <div style="width: 100%;" class="anterior"> {{ enlaces[0]?.nombre }} </div>
+                                <img class="imagenEnlace anterior" :src="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'+ (poke[0]?.numero_pokedex - 1) +'.png'">
                             </a>
                             <a :href="'detallePokemon.php?numero_pokedex=' + (poke[0]?.numero_pokedex + 1)" class="card-prev-next">
+                                <img class="imagenEnlace siguiente" :src="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'+ (poke[0]?.numero_pokedex + 1) +'.png'">
                                 <div style="width: 100%;" class="siguiente"> {{enlaces[1]?.nombre }} </div>
+                                <i class="fa-solid fa-angle-right"></i>
                             </a>
+                        </div>
+                        <button @click="mostrarVariantes = !mostrarVariantes" class="variantePoke" v-show="poke.length > 1">
+                            <h3 style="width: 100%; text-align: left;">{{ varianteSeleccionada?.nombre }}</h3>
+                            <i class="fa-solid fa-angle-down"></i>
+                        </button>
+                        <div v-if="mostrarVariantes">
+                            <button 
+                                v-for="p in poke" 
+                                :key="p.id"
+                                @click="() => { varianteSeleccionada = p; mostrarVariantes = false }"
+                            >{{ p.nombre }}
+                            </button>
+                        </div>
+                        <div>
+                            <img class="imagenDetalle" :src="`../img/images/${getImageName(varianteSeleccionada)}`">
                         </div>
                     </div> 
                     <div class="card stats">...</div> 
