@@ -1,0 +1,130 @@
+#tabla-tipos{
+    border: 0.5 solid lightgray;
+    font-family: Arial, sans-serif;
+    border-collapse: collapse;
+}
+
+th{
+    border: 1px solid gray;
+    padding: 2px;
+    align-items: center;
+    background: gray;
+}
+
+td{
+    border: 1px solid gray;
+    background-color: lightgray;
+    width: 55px;
+    height: 40px;
+    align-items: center;
+    text-align: center;
+}
+
+.porcentaje{
+    border-radius: 12px;
+    height: 70%;
+    align-items: center;
+    text-align: center;
+    padding: 1px;
+}
+
+.porcentaje p{
+    margin-top: 12%;
+}
+
+.principal{
+    margin-top: 25px;
+    align-items: 100%;
+    margin-left: 15%;
+    border-radius: 12px;
+}
+
+.tituloTabla{
+    background: lightgray;
+    width: 82%;
+    height: 75px;
+    border-radius: 10px 10px 0px 0px;
+    padding: 20px;
+    text-align: left;
+}
+
+.tituloCombinaciones{
+    background: lightgray;
+    border-radius: 10px;
+    width: 78%;
+    height: 40px;
+    margin: 20px;
+    text-align: left;
+    padding: 10px;
+}
+
+.explicacion{
+    margin: 20px;
+    width: 78%;
+}
+
+.selectTipo{
+    border-radius: 10px;
+    border: 1px solid gray;
+    width: 78%;
+    height: 40px;
+    margin: 20px;
+    text-align: left;
+    padding: 10px;
+}
+
+.selectTipo:hover{
+    border: 1px solid lightskyblue;
+}
+
+.dropdown {
+    width: 78%;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    margin: 20px;
+}
+
+.dropdown-selected {
+    border: 1px solid gray;
+    background: #f0f0f0;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+}
+
+.dropdown-selected:hover{
+    border: 1px solid lightskyblue;
+}
+
+.dropdown img {
+    width: 24px;
+    height: 24px;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    width: 100%;
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    max-height: 250px;
+    overflow-y: auto;
+    z-index: 10;
+}
+
+.dropdown-item {
+    padding: 8px 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dropdown-item:hover {
+    background: #e6f0ff;
+}

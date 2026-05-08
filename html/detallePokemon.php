@@ -51,6 +51,7 @@
                                 v-for="p in poke" 
                                 :key="p.id"
                                 @click="() => { varianteSeleccionada = p; mostrarVariantes = false }"
+                                class="variantePoke"
                             >{{ p.nombre }}
                             </button>
                         </div>

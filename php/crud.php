@@ -111,6 +111,13 @@ switch($opcion){
         $resultado->execute($params);
         $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
         break;
+
+    case 7:
+        $sql = "SELECT * FROM tipo ORDER BY nombre ASC";
+        $resultado = $conexion->prepare($sql);
+        $resultado->execute();
+        $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
+        break;
 }
 print json_encode($data, JSON_UNESCAPED_UNICODE);
 $conexion = NULL;
