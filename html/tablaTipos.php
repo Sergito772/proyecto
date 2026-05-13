@@ -9,7 +9,7 @@
 <body>
     <header>
         <section class="navContent">
-            <a href="./index.html" class="logoEnlace">
+            <a href="./index.php" class="logoEnlace">
                 <img src="../img/GOENCICLOPEDIA.png" 
                     style="position: absolute; height: 100%; width: 100%; left: 0; bottom: 0;  object-fit: contain;">
             </a>
@@ -93,7 +93,35 @@
                     </div>
                 </div>
 
-                
+                <div v-if="resultado">
+                     <div class="bloque-resistencias">
+                        <h3>Resistencias</h3>
+
+                        <div v-if="resultado.superResistencias.length">
+                            <strong>x0.39</strong>
+                            <p>{{ resultado.superResistencias.join(', ') }}</p>
+                        </div>
+
+                        <div v-if="resultado.resistencias.length">
+                            <strong>x0.63</strong>
+                            <p>{{ resultado.resistencias.join(', ') }}</p>
+                        </div>
+                    </div>
+
+                    <div class="bloque-debilidades">
+                        <h3>Debilidades</h3>
+
+                        <div v-if="resultado.superDebilidades.length">
+                            <strong>x2.56</strong>
+                            <p>{{ resultado.superDebilidades.join(', ') }}</p>
+                        </div>
+
+                        <div v-if="resultado.debilidades.length">
+                            <strong>x1.6</strong>
+                            <p>{{ resultado.debilidades.join(', ') }}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </main>

@@ -29,6 +29,20 @@ var appTabla = new Vue({
             return "100%"
         },
 
+        obtenerCombinacion(atacante, defensorId){
+            const parse = (str) => str ? str.split(",").map(Number) : []
+
+            const debilidades = parse(atacante.debilidades)
+            const resistencias = parse(atacante.resistencias)
+            const inmune = parse(atacante.inmune_a)
+
+            if (inmune.includes(defensorId)) return 0.39
+            if (debilidades.includes(defensorId)) return 1.6
+            if (resistencias.includes(defensorId)) return 0.63
+
+            return 1
+        },
+
         normalizarTipo(nombre) {
         return nombre
             .toLowerCase()
@@ -63,28 +77,31 @@ var appTabla = new Vue({
             this.combinarTipos()
         },
 
+        redondear(valor) {
+            return Math.floor(valor * 100) / 100
+        },
+
         combinarTipos() {
             if (!this.tipo1) return null
 
             let resistencias = []
             let debilidades = []
+            let superDebilidades = []
+            let = superResistencias = []
 
             this.tipos.forEach(atacante => {
-                const p1 = this.obtenerMultiplicador(tipo1, atacante.id)
-                const p2 = t2 ? this.obtenerMultiplicador(tipo2, atacante.id) : 1
+                const p1 = this.obtenerCombinacion(this.tipo1, atacante.id)
+                const p2 = this.tipo2 ? this.obtenerCombinacion(this.tipo2, atacante.id) : 1
 
-                const m1 = p1.split("%")[0]/100
-                const m2 = p2.split("%")[0]/100
+                const total = this.redondear(p1 * p2)
 
-                const total = m1 * m2
-
-                if (total < 1) resistencias.push(atacante.nombre)
-                if (total > 1) debilidades.push(atacante.nombre)
+                if (total <= 0.39) superResistencias.push(atacante.nombre)
+                else if (total < 1) resistencias.push(atacante.nombre)
+                else if (total >= 2.56) superDebilidades.push(atacante.nombre)
+                else if (total > 1) debilidades.push(atacante.nombre)
             });
 
-            console.log(resistencias, debilidades)
-
-            return { resistencias, debilidades }
+            return { resistencias, debilidades, superDebilidades, superResistencias }
         }
     },
     mounted() {

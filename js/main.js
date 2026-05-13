@@ -112,7 +112,8 @@ var appLista = new Vue({
             Siniestro: "#705746",
             Acero: "#B7B7CE",
             Hada: "#D685AD"
-        }
+        },
+        noticias: []
     },
     methods: {
         btnBuscar: async function() {
@@ -122,6 +123,15 @@ var appLista = new Vue({
                 return;
             }
             this.listarPokemon()
+        },
+
+        cargarNoticias: async function() {
+            try {
+                const response = await axios.get('../php/noticias.php');
+                this.noticias = response.data;
+            } catch (error) {
+                console.error("Error al cargar noticias:", error);
+            }
         },
 
         listarPokemon:async function(){
@@ -202,7 +212,8 @@ var appLista = new Vue({
         }
     },
     mounted() {
-    console.log("Vue cargado correctamente");
+        console.log("Vue cargado correctamente");
+        this.cargarNoticias()
     },
     created: function(){
         this.listarPokemon()

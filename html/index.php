@@ -88,8 +88,21 @@
                     </article>
                 </a>
             </section>
-            <aside class="filtros">
+            <aside class="filtros noticias">
                 <h3>Noticias</h3>
+                <div id="noticias">
+                    <article v-for="n in noticias" :key="n.url" class="noticia">
+                        <img :src="n.imagen" class="imgNoticia" v-if="n.imagen">
+
+                        <h4>{{ n.titulo }}</h4>
+
+                        <p>{{ n.descripcion }}</p>
+
+                        <a :href="n.url" target="_blank" class="btnNoticia">
+                            Leer noticia completa
+                        </a>
+                    </article>
+                </div>
             </aside>
         </div>
         <!--Jquery -->  
