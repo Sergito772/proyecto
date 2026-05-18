@@ -118,6 +118,77 @@ switch($opcion){
         $resultado->execute();
         $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
         break;
+
+    case 8:
+        $idPokemon = $_GET['id'] ?? null; 
+        $sql = "SELECT 
+                    p.nombre,
+                    c.nivel, 
+                    FLOOR(
+                        ( (p.Ataque + 15) * SQRT(p.defensa + 15) * SQRT(p.PV + 15) * POW(c.cpm, 2) ) / 10
+                    ) AS pc_nivel, 
+                    FLOOR(
+                        ( (p.Ataque + 10) * SQRT(p.defensa + 10) * SQRT(p.PV + 10) * POW(c.cpm, 2) ) / 10
+                    ) AS pc_nivel_10 
+                FROM pokemon p 
+                JOIN cpm c 
+                WHERE p.id = $idPokemon 
+                ORDER BY c.nivel;";
+
+        $resultado = $conexion->prepare($sql);
+        $resultado->execute();
+        $data = $resultado->fetchAll((PDO::FETCH_ASSOC));
+        break;
+
+    case 9:
+        $idPokemon = $_GET['id'] ?? null;
+        $sql = "SELECT t.*
+                FROM pokemon_tipo pt
+                JOIN tipo t ON pt.id_tipo = t.id
+                WHERE pt.id_pokemon = $idPokemon;";
+
+        $resultado = $conexion->prepare($sql);
+        $resultado->execute();
+        $data = $resultado->fetchAll((PDO::FETCH_ASSOC));
+        break;
+
+    case 10:
+        $idPokemon = $_GET['id'] ?? null;
+        $sql = "SELECT m.*, pm.legacy, t.nombre AS tipo_nombre 
+                FROM pokemon_movimiento pm 
+                JOIN movimientos m ON pm.id_movimiento = m.id 
+                JOIN tipo t ON m.id_tipo = t.id 
+                WHERE pm.id_pokemon = $idPokemon;";
+        $resultado = $conexion->prepare($sql);
+        $resultado->execute();
+        $data = $resultado->fetchAll((PDO::FETCH_ASSOC));
+        break;
+
+    case 11:
+        $idPokemon = $_GET['id'] ?? null;
+        $sql = "SELECT 
+                    p.id,
+                    p.nombre,
+                    p.numero_pokedex,
+                    e.caramelos,
+                    e.objeto_evolucion,
+                    e.condicion_especial,
+                    p2.id AS id_destino,
+                    p2.nombre AS nombre_destino,
+                    p2.numero_pokedex AS pokedex_destino
+                FROM pokemon p
+                LEFT JOIN evolucion e ON p.id = e.id_pokemon_origen
+                LEFT JOIN pokemon p2 ON e.id_pokemon_destino = p2.id
+                WHERE p.id_cadena_evo = (
+                    SELECT id_cadena_evo 
+                    FROM pokemon 
+                    WHERE id = $idPokemon
+                )
+                ORDER BY p.numero_pokedex;";
+        $resultado = $conexion->prepare($sql);
+        $resultado->execute();
+        $data = $resultado->fetchAll((PDO::FETCH_ASSOC));
+        break;
 }
 print json_encode($data, JSON_UNESCAPED_UNICODE);
 $conexion = NULL;
